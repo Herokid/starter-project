@@ -17,18 +17,18 @@ module.exports = {
             // Can be:
             // watch: {} (options for the `watch` option you can find https://github.com/paulmillr/chokidar)
             watch: true,
-        },
-
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env"]
-                    }
-                }
-            ]
         }
+    },
+    
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: "babel-loader",
+                options: {
+                    presets: ["@babel/preset-env"]
+                }
+            }
+        ]
     }
 };
