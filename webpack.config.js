@@ -10,8 +10,13 @@ const rulesJS = {
     }
 }
 const rulesCSS = {
-    test: /\.css$/,
-    use: [MiniCssExtractPlugin.loader, "css-loader"],
+    test: /\.s[ac]ss$/i,
+    use: [
+        MiniCssExtractPlugin.loader, 
+        // "style-loader",
+        "css-loader",
+        "sass-loader"
+    ],
 }
 
 const rules = [rulesJS, rulesCSS];
@@ -21,7 +26,9 @@ module.exports = (env, argv) => {
     return {
         output: {
             filename: isProduction ? 'bundle.[contenthash].js' : 'bundle.js',  
+            clean: true,
         },
+
         mode: 'development',
     
         devServer: {
@@ -37,7 +44,8 @@ module.exports = (env, argv) => {
         plugins: [
             new HtmlWebpackPlugin({
                 template: './src/index.html'
-            }),
+            })
+            ,
 
             new MiniCssExtractPlugin({
                 filename: isProduction ? 'bundle.[contenthash].css': 'bundle.css'
