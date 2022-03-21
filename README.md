@@ -28,8 +28,8 @@ import  Default  from  './pages/default'
 import  Home  from  './pages/home'
 
 const  pages  = {
-	default: Default,
-	home: Home
+   default: Default,
+   home: Home
 } 
 
 export  default  pages
@@ -39,11 +39,13 @@ If for example we want our main index.html to instantiate the "Home" object (src
 
 In order to make this dynamic we use the "templateParameters" parameter of the "html-webpack-plugin" plugin options.
 ```js
+...
 new  HtmlWebpackPlugin(
 {
    templateParameters: { page: 'home' },
    template: './src/index.html'
 })
+...
 ```
 
 In the html(src/index.html) template we apply this value to the *"data-page"* attribute as shown below..
@@ -63,12 +65,12 @@ With this, the main javascript file (src/es6/app/app.js) can decide which object
 import  Pages  from  './pages'
 
 class  App {
-	constructor() {
-		const  _  =  this;
-		const  pageReference  =  document.body.dataset.page;
-		const  page  =  Pages[pageReference] ||  Pages['default'];
-		new  page();
-	}
+   constructor() {
+      const  _  =  this;
+      const  pageReference  =  document.body.dataset.page;
+      const  page  =  Pages[pageReference] ||  Pages['default'];
+      new  page();
+   }
 };
 
 export  default  App;
