@@ -11,6 +11,9 @@ npm-debug.log*
 # Dependency directories
 node_modules/
 
+# Distribution folder
+dist/
+
 # Compress files
 *.tgz
 *.zip
