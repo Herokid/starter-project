@@ -1,34 +1,51 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
-    mode: 'development',
+const rulesJS = {
+    test: /\.js$/,
+    loader: "babel-loader",
+    options: {
+        presets: ["@babel/preset-env"]
+    }
+}
+const rulesCSS = {
+    test: /\.css$/,
+    use: [MiniCssExtractPlugin.loader, "css-loader"],
+}
 
-    devServer: {
-        static: {
-            directory: path.resolve(__dirname, "dist"),
-            staticOptions: {},
-            // Don't be confused with `devMiddleware.publicPath`, it is `publicPath` for static directory
-            // Can be:
-            // publicPath: ['/static-public-path-one/', '/static-public-path-two/'],
-            publicPath: "/",
-            // Can be:
-            // serveIndex: {} (options for the `serveIndex` option you can find https://github.com/expressjs/serve-index)
-            serveIndex: true,
-            // Can be:
-            // watch: {} (options for the `watch` option you can find https://github.com/paulmillr/chokidar)
-            watch: true,
-        }
-    },
+const rules = [rulesJS, rulesCSS];
+
+module.exports = (env, argv) => {
+    const isProduction = argv.mode === 'production';
+    return {
+        output: {
+            filename: isProduction ? 'bundle.[contenthash].js' : 'bundle.js',  
+        },
+        mode: 'development',
     
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                loader: "babel-loader",
-                options: {
-                    presets: ["@babel/preset-env"]
-                }
+        devServer: {
+            static: {
+                directory: path.resolve(__dirname, "dist"),
+                staticOptions: {},
+                publicPath: "/",
+                serveIndex: true,
+                watch: true,
             }
-        ]
+        },
+    
+        plugins: [
+            new HtmlWebpackPlugin({
+                template: './src/index.html'
+            }),
+
+            new MiniCssExtractPlugin({
+                filename: isProduction ? 'bundle.[contenthash].css': 'bundle.css'
+            })
+        ],
+    
+        module: {
+            rules
+        }
     }
 };
