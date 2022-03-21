@@ -9,11 +9,11 @@ const rulesJS = {
         presets: ["@babel/preset-env"]
     }
 }
+
 const rulesCSS = {
     test: /\.s[ac]ss$/i,
     use: [
         MiniCssExtractPlugin.loader, 
-        // "style-loader",
         "css-loader",
         "sass-loader"
     ],
@@ -42,14 +42,8 @@ module.exports = (env, argv) => {
         },
     
         plugins: [
-            new HtmlWebpackPlugin({
-                template: './src/index.html'
-            })
-            ,
-
-            new MiniCssExtractPlugin({
-                filename: isProduction ? 'bundle.[contenthash].css': 'bundle.css'
-            })
+            new HtmlWebpackPlugin({template: './src/index.html'}),
+            new MiniCssExtractPlugin({filename: isProduction ? 'bundle.[contenthash].css': 'bundle.css'})
         ],
     
         module: {

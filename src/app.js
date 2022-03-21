@@ -1,1 +1,0 @@
-export const run = () => console.log('Start project: start');

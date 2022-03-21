@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Common styles
+   ========================================================================== */
+
+    
+*,
+*:before,
+*:after {
+    position: relative;
+    box-sizing: inherit;
+    outline: none;
+}
+
+html {
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 62.5%;
+    text-size-adjust: 100%;
+}
+
+body {
+    line-height: 1.445em;
+    color: var(--color-dark);
+    font-family: var(--font-main);
+    font-size: 1.6rem;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
