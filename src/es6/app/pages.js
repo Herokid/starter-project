@@ -1,3 +1,5 @@
+'use strict';
+
 import Default from './pages/default'
 import Home from './pages/home'
 
