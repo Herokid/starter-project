@@ -23,6 +23,7 @@ const rules = [rulesJS, rulesCSS];
 
 module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
+
     return {
         output: {
             filename: isProduction ? 'bundle.[contenthash].js' : 'bundle.js',  
@@ -40,14 +41,17 @@ module.exports = (env, argv) => {
                 watch: true,
             }
         },
-    
+
         plugins: [
-            new HtmlWebpackPlugin({template: './src/index.html'}),
+            new HtmlWebpackPlugin(
+                { 
+                    templateParameters: { page: 'home' },
+                    template: './src/index.html'
+                }
+            ),
             new MiniCssExtractPlugin({filename: isProduction ? 'bundle.[contenthash].css': 'bundle.css'})
         ],
     
-        module: {
-            rules
-        }
+        module: { rules }
     }
 };

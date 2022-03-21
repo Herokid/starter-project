@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "webpack serve --mode=development",
-    "watch": "webpack --watch",
-    "build": "webpack --mode=production"
+    "dev": "webpack serve --config bundle/webpack.config.js --mode=development",
+    "watch": "webpack --config bundle/webpack.config.js --watch",
+    "build": "webpack --config bundle/webpack.config.js --mode=production"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
